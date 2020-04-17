@@ -7,6 +7,7 @@ def removehtml(html):
     p = re.compile('<[^>]+>')
     return p.sub("", html)
 
+
 def get_comments(params):
     response = requests.get('https://m.weibo.cn/comments/hotflow', headers=headers, params=params)
     results = json.loads(response.text)
@@ -42,6 +43,9 @@ if __name__ == '__main__':
 
             for item in info_list_temp:
                 print("----------------------"*20)
+                isPass = 2
+                source = "新浪微博-重点网站"
+                content_info ={}
                 publish_time = item["itemid"].split("&")[-2].split("=")[-1]
                 print("发布时间：",publish_time)
                 print("文本内容：",removehtml(item["mblog"]["text"]))
